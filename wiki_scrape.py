@@ -4,6 +4,8 @@ This code will use bs4 & requests libraries to
 extract table from wikipedia pages
 and create a data frame from the wikipedia table
 
+You may need to adjust html to taste for the particular page
+
 Author: Lauren Wilson
 """
 
@@ -15,7 +17,6 @@ import pandas as pd
 def get_wiki(url):
     
     # send a GET request to the wikipedia url and be sure response says 200 for legality
-    table_class="wikitable sortable jquery-tablesorter"
     response=requests.get(url)
     print(response.status_code)
     
@@ -29,7 +30,7 @@ def get_wiki(url):
         df = pd.read_html(str(wiki_table))# read the html into a dataframe object with pandas
 
         # convert list to dataframe
-        df = pd.DataFrame(df[0])
+        df = pd.DataFrame(df[0]) 
 
         return df
 
